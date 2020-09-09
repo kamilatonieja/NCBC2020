@@ -1,0 +1,44 @@
+```cryptol
+module labs::moje::xoodyak where
+
+
+mess M = split`{3}(groupBy`{8}(split (M # [True] # zero # [True]):[96][1]))
+
+
+//teta:
+A0 M = head(take`{1} (mess M))
+A1 M = head(drop`{1}( take`{2}(mess M)))
+A2 M = head(drop`{2}( take`{3}(mess M)))
+
+P M = (A0 M)^(A1 M)^(A2 M)
+
+shift8 M N = R
+    where 
+        Q = head (A0 M) >>> N
+        W = head (drop`{1}( take`{2}(A0 M))) >>> N
+        E = head (drop`{2}( take`{3}(A0 M))) >>> N
+        R = groupBy`{8}(Q#W#E)
+
+//fiW:
+fiA1 M = (A1 M)>>>1
+
+
+//pi:
+
+
+OA1 M = ~(A1 M)
+
+
+//xi:
+
+
+
+//fiE:
+
+ReduceX x = ((x % 4) + 4) % 4
+
+ReduceZ z = ((z % 32) + 32) % 32
+
+
+
+```
