@@ -34,28 +34,30 @@ fiA1 M = shift8 (tetaA1 M) 1 0
 fiA2 M = shift8 (tetaA2 M) 0 11
 
 //pi:
-zm0 = 0x00000012
-zm1 = groupBy`{8}(split (zm0):[32][1])
+c0 = [0x00000012, 0x000001A0,  0x000000F0,  0x00000380,  0x0000002C,  0x00000060,  0x00000014, 0x00000120,  0x000000D0,  0x000003C0,  0x00000038,  0x00000058]
 
-piA0 M = (tetaA0 M)^(zm1)
+
+funtan nr2 = head( c0 @@ [nr2])
+
+zm1 nr = groupBy`{8}(split ((funtan nr)):[32][1])
+
+piA0 M nr = (tetaA0 M)^(zm1 nr)
 
 //xi:
 B0 M = (~(fiA1 M))&&(fiA2 M)
-B1 M = (~(fiA2 M))&&(piA0 M)
-B2 M = (~(piA0 M))&&(fiA1 M)
-xiA0 M = (piA0 M)^(B0 M)
-xiA1 M = (fiA1 M)^(B1 M)
-xiA2 M = (fiA2 M)^(B2 M)
+B1 M nr = (~(fiA2 M))&&(piA0 M nr)
+B2 M nr = (~(piA0 M nr))&&(fiA1 M)
+xiA0 M nr = (piA0 M nr)^(B0 M)
+xiA1 M nr = (fiA1 M)^(B1 M nr)
+xiA2 M nr = (fiA2 M)^(B2 M nr)
 
 //fiE:
 
-fieA1 M = shift8 (xiA1 M) 0 1
-fieA2 M = shift8 (xiA2 M) 2 8
+fieA1 M nr= shift8 (xiA1 M nr) 0 1
+fieA2 M nr= shift8 (xiA2 M nr) 2 8
 
+end M nr = (xiA0 M nr)#(fieA1 M nr)#(fieA2 M nr)
 
-ReduceX x = ((x % 4) + 4) % 4
-
-ReduceZ z = ((z % 32) + 32) % 32
 
 
 
