@@ -4,21 +4,29 @@ module labs::moje::alg3 where
 //Algorythm 3: 
 s = 0b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000//message
 
-down xi cd = s^(xi # 0b00000001 # zero # cd)
+//down xi cd = s^(xi # 0b00000001 # zero # cd)
 
-//ups yi cu = xoodoo(s^(zero#cu))//with xoodoo
+
+down xi cd = sa
+    where
+        sa = s^(xi # 0b00000001 # zero # cd)
+
+
+
+//ups yi cu s = xoodoo(s^(zero#cu))//with xoodoo
 ups yi cu = (s^(zero#cu))
 
-crypt I decrypt = 
+/*crypt I decrypt = 
 
 sqAny l cu = x
         where 
             Y = up((min l Rsq) cu)
             Y =
             if (length Y) >l then 
-            //down(zero, 00000000)
+            down(zero, 00000000, s)
             else 
-
+*/
+ 
 
 //funsplit X zm = split`{zm}(split (X))
 
