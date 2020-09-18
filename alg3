@@ -1,33 +1,58 @@
 ```cryptol
 module labs::moje::alg3 where
 
-//Algorythm 3: 
+
+//Algorythm 3:
+/*
 s = 0b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000//message
+ 
+Rsq = 0b111010010011111100111010111011011100000101000001011110100010001110010110010101110100000000001000010110001110101110011101001100010000011011101100110001010101000101010111001101000101111001000100
+ */
 
 //down xi cd = s^(xi # 0b00000001 # zero # cd)
-
-
-down xi cd = sa
+ 
+whileDownUp l cu y s Rsq = return
     where
-        sa = s^(xi # 0b00000001 # zero # cd)
-
-
-
+    s1 = down zero 0b00000000 s
+    s2 = ups (min (l -length y) Rsq) 0b00000000 s1
+    ret = y # s2
+    return = if (length s) < l
+        then whileDownUp l cu ret s2 Rsq
+        else y
+       
+sqAny l cu Rsq s= x
+        where
+            y = ups (min l Rsq) cu s
+            x = whileDownUp l cu y s Rsq
+ 
+down xi cd s = sa
+    where
+        sa = s^(xi # 0b00000001 # zero # cd)        
+       
 //ups yi cu s = xoodoo(s^(zero#cu))//with xoodoo
-ups yi cu = (s^(zero#cu))
-
-/*crypt I decrypt = 
-
+ups yi cu s = (s^(zero#cu))
+ 
+/*
+Crypt I decrypt = return
+    where
+        Oi = split`{3} I
+        out = if length Oi > inc
+        then o1 = o @ inc ^ (ups (Oi @ inc) )
+        else return = 0
+ 
+ 
 sqAny l cu = x
-        where 
+        where
             Y = up((min l Rsq) cu)
             Y =
-            if (length Y) >l then 
-            down(zero, 00000000, s)
-            else 
+            if (length Y) >l then
+            down(zero 0b00000000)
+            Y = Y#up((min (l-(length Y)) Rsq)  00000000)
+            else Y
 */
  
-
+ 
 //funsplit X zm = split`{zm}(split (X))
+increment x = x+1
 
 ```
